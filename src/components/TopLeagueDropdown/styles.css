@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700,900');
+
+.dd-wrapper {
+    display: flex;
+    min-height: 38px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.dd-header {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    width: 100%;
+    padding: 0 20px;
+    font-weight: bold;
+}
+
+.dd-list {
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, 0.075) !important;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+.dd-list-item {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    padding: 10px 15px 10px 15px;
+    width: 100%;
+    text-align: left;
+}
