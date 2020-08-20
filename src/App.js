@@ -6,6 +6,7 @@ import AllLeagues from './pages/AllLeagues';
 import UserProfile from './pages/UserProfile';
 import LogIn from './pages/LogIn';
 
+
 function App() {
   return (
     <Router>
