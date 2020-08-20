@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import API from "../utils/API"
-import TopLeagueDropdown from '../components/TopLeagueDropdown';
+import TopLeagueDropdown from "../components/TopLeagueDropdown"
 import RowDropdown from '../components/RowDropdown';
 
 const AllLeagues = () => {

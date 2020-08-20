@@ -5,6 +5,8 @@ import HomePage from './pages/HomePage';
 import AllLeagues from './pages/AllLeagues';
 import UserProfile from './pages/UserProfile';
 import LogIn from './pages/LogIn';
+import LeagueDetails from './pages/LeagueDetails';
+import TeamDetails from './pages/TeamDetails';
 
 
 function App() {
@@ -24,6 +26,12 @@ function App() {
           </Route>
           <Route exact path="/login">
             <LogIn />
+          </Route>
+          <Route exact path="/leagues/:id">
+            <LeagueDetails />
+          </Route>
+          <Route exact path="/leagues/:id/:id">
+            <TeamDetails />
           </Route>
         </Switch>
       </div>
