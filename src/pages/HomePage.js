@@ -1,93 +1,102 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import API from "../utils/API"
 
 const HomePage = () => {
+    const [liveScores, setScores] = useState([])
+    const [dailyMatches, setDailyMatches] = useState([])
+
+    useEffect(() => {
+        API.getLiveScores()
+            .then(res => setScores(res.data.events))
+            .catch(err => console.log(err))
+        const interval = setInterval(() => {
+            API.getLiveScores()
+                .then(res => setScores(res.data.events))
+                .catch(err => console.log(err))
+        }, 100000)
+        return () => clearInterval(interval)
+    }, [])
+
+    useEffect(() => {
+        API.getDailyMatches()
+            .then(res => setDailyMatches(res.data.events))
+            .catch(err => console.log(err))
+    }, [])
+
+    setTimeout(() => {
+        console.log(dailyMatches)
+    }, 1000)
+
     return (
-        <table className="pure-table">
-            <thead>
-                <tr>
-                    <th>Home</th>
-                    <th>League</th>
-                    <th>Away</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr className="pure-table-odd">
-                    <td> </td>
-                    <td>MLS</td>
-                    <td> </td>
-                </tr>
-                <tr>
-                    <td>Orlando</td>
-                    <td>(0 - 1)</td>
-                    <td>LA Galaxy</td>
-                </tr>
-                <tr>
-                    <td>Inter Miami</td>
-                    <td>(1 - 0)</td>
-                    <td>NYCFC</td>
-                </tr>
-                <tr className="pure-table-odd">
-                    <td> </td>
-                    <td>Serie B</td>
-                    <td> </td>
-                </tr>
-                <tr>
-                    <td>Perguia</td>
-                    <td>(2 - 1)</td>
-                    <td>Pescara</td>
-                </tr>
-                <tr className="pure-table-odd">
-                    <td> </td>
-                    <td>Pro League</td>
-                    <td> </td>
-                </tr>
-                <tr>
-                    <td>KRC Genk</td>
-                    <td>(3 - 1)</td>
-                    <td>Oud-Heverlee Leuven</td>
-                </tr>
-                <tr className="pure-table-odd">
-                    <td> </td>
-                    <td>Brasileiro Serie A</td>
-                    <td> </td>
-                </tr>
-                <tr>
-                    <td>Gremio</td>
-                    <td>(0 - 0)</td>
-                    <td>Corinthians</td>
-                </tr>
-                <tr>
-                    <td>Coritibia</td>
-                    <td>(2 - 4)</td>
-                    <td>Flamengo</td>
-                </tr>
-                <tr className="pure-table-odd">
-                    <td> </td>
-                    <td>Parva Liga</td>
-                    <td> </td>
-                </tr>
-                <tr>
-                    <td>Lokomotiv Plovdiv</td>
-                    <td>(3 - 1)</td>
-                    <td>Botev Vratsa</td>
-                </tr>
-                <tr className="pure-table-odd">
-                    <td> </td>
-                    <td>Canadian Premier League</td>
-                    <td> </td>
-                </tr>
-                <tr>
-                    <td>York 9 FC</td>
-                    <td>(8 - 2)</td>
-                    <td>Atletico Ottawa</td>
-                </tr>
-                <tr>
-                    <td>HFX Wanderers FC</td>
-                    <td>(1 - 2)</td>
-                    <td>Pacific FC</td>
-                </tr>
-            </tbody>
-        </table>
+        <div>
+            {!liveScores ? (
+                <h4>No Matches Currently Playing, Check Out What's Going On Today Down Below</h4>
+            ) : (
+                    <div>
+                        <h3>Current Matches</h3>
+                        <table className="pure-table">
+                            <thead>
+                                <tr>
+                                    <th>Home</th>
+                                    <th>League</th>
+                                    <th>Away</th>
+                                </tr>
+                            </thead>
+                            {liveScores.map(scores => {
+                                return (
+                                    <tbody key={Math.floor((Math.random() * 1000000000000) + 1)}>
+                                        <tr className="pure-table-odd" key="liveTr">
+                                            <td></td>
+                                            <td>{scores.strLeague}</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>{scores.strHomeTeam}</td>
+                                            <td>{scores.strProgress}' ({scores.intHomeScore} - {scores.intAwayScore})</td>
+                                            <td>{scores.strAwayTeam}</td>
+                                        </tr>
+                                    </tbody>
+                                )
+                            })}
+                        </table>
+                    </div>
+                )}
+            {!dailyMatches ? (
+                <h4>Brace Yourselves We Got No Soccer Today</h4>
+            ) : (
+                    <div>
+                        <h3>Today's Matches</h3>
+                        <table className="pure-table">
+                            <thead>
+                                <tr>
+                                    <th>Home</th>
+                                    <th>League</th>
+                                    <th>Away</th>
+                                    <th>Local Kick Off Time</th>
+                                </tr>
+                            </thead>
+                            {dailyMatches.map(matches => {
+                                return (
+                                    <tbody key={Math.floor((Math.random() * 1000000000000) + 1)}>
+                                        <tr className="pure-table-odd" key="dailyTr">
+                                            <td></td>
+                                            <td>{matches.strLeague}</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>{matches.strHomeTeam}</td>
+                                            <td>vs</td>
+                                            <td>{matches.strAwayTeam}</td>
+                                            <td>{matches.strTime}</td>
+                                        </tr>
+                                    </tbody>
+                                )
+                            })}
+                        </table>
+                    </div>
+                )}
+        </div>
     );
 }
 
