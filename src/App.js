@@ -8,6 +8,7 @@ import LogIn from './pages/LogIn';
 import LeagueDetails from './pages/LeagueDetails';
 import TeamDetails from './pages/TeamDetails';
 
+
 function App() {
   return (
     <Router>
