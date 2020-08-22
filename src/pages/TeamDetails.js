@@ -4,6 +4,7 @@ import API from "../utils/API"
 
 const TeamDetails = () => {
     const [selectedTeam, setTeam] = useState([])
+    const [teamPlayers, setPlayers] = useState([])
 
     const { id } = useParams();
 
@@ -11,9 +12,11 @@ const TeamDetails = () => {
         API.getTeamById(id)
             .then(res => setTeam(res.data.teams))
             .catch(err => console.log(err))
-    }, [])
 
-    setTimeout(() => { console.log(selectedTeam) }, 2000)
+        API.getPlayersByTeamId(id)
+            .then(res => setPlayers(res.data.player))
+            .catch(err => console.log(err))
+    }, [])
 
     return (
         <div>
@@ -31,6 +34,23 @@ const TeamDetails = () => {
                                 </div>
                             )
                         })}
+                    </div>
+                )}
+            {!teamPlayers ? (
+                <h4>No Players in Database</h4>
+            ) : (
+                    <div>
+                        <ul>
+                            {teamPlayers.map(player => {
+                                return (
+                                    <li key={player.idPlayer}>
+                                        <h4 key={player.strPlayer}>{player.strPlayer}</h4>
+                                        <img key={player.strThumb} className="card-img" src={player.strThumb} height="200" width="200" alt="No Image Found" />
+                                        <p key={player.strPosition}>Role: {player.strPosition}</p>
+                                    </li>
+                                )
+                            })}
+                        </ul>
                     </div>
                 )}
         </div>
