@@ -1,16 +1,24 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import React, { useContext } from 'react';
+import { BrowserRouter as  Route, Switch } from "react-router-dom";
+import { Router } from "@reach/router";
 import NavBar from './components/NavBar/';
 import HomePage from './pages/HomePage';
 import AllLeagues from './pages/AllLeagues';
-import UserProfile from './pages/UserProfile';
-import LogIn from './pages/LogIn';
+import SignUp from "./pages/SignUp";
+import UserProfile from './pages/ProfilePage';
+import SignIn from './pages/SignIn';
 import LeagueDetails from './pages/LeagueDetails';
 import TeamDetails from './pages/TeamDetails';
+import Application from './pages/Application'
+import UserProvider from "./providers/UserProvider";
+import { UserContext } from "./providers/UserProvider";
 
 
 function App() {
+   
   return (
+    <UserProvider>
+    
     <Router>
       <div>
         <NavBar />
@@ -25,7 +33,7 @@ function App() {
             <UserProfile />
           </Route>
           <Route exact path="/login">
-            <LogIn />
+            <Application />
           </Route>
           <Route exact path="/leagues/:id">
             <LeagueDetails />
@@ -36,7 +44,7 @@ function App() {
         </Switch>
       </div>
     </Router>
+    </UserProvider>
   );
 }
-
 export default App;
