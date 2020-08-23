@@ -17,17 +17,18 @@ const TopLeagueDropdown = ({ name: country }) => {
     }, [])
 
     return (
-        <div className="dd-wrapper">
+        <div>
             <button
-                className="dd-header"
+                className="dropdown button secondary expanded"
                 onClick={() => toggle(!open)}
             >
-                <p className="dd-header-title-bold">{country}</p>
-                <p>{open ? 'Close' : 'Open'}</p>
+                {country}
+                {/* {open ? 'Close' : 'Open'} */}
+                {/* <p>{open ? 'Close' : 'Open'}</p> */}
             </button>
 
             {open && (
-                <ul className="dd-list">
+                <div>
                     {!searchResult ? (
                         <h4>No Results</h4>
                     ) : (
@@ -38,14 +39,14 @@ const TopLeagueDropdown = ({ name: country }) => {
                                         key={league.idLeague}
                                         leaguename={league.strLeague}
                                     >
-                                        <button className="dd-list-item" key={league.idLeague} id={league.idLeague}>
+                                        <button className="hollow button secondary expanded" key={league.idLeague} id={league.idLeague}>
                                             {league.strLeague}
                                         </button>
                                     </Link>
                                 )
                             })
                         )}
-                </ul>
+                </div>
             )}
         </div>
     );
