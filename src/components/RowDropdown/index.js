@@ -17,31 +17,31 @@ const RowDropdown = ({ name: country }) => {
     }, [])
 
     return (
-        <div className="dd-wrapper">
+        <div>
             <button
-                className="dd-header"
+                className="dropdown button secondary expanded"
                 onClick={() => toggle(!open)}
             >
-                <p className="dd-header-title-bold">{country}</p>
-                <p>{open ? 'Close' : 'Open'}</p>
+                {country}
+                {/* {open ? 'Close' : 'Open'} */}
             </button>
 
             {open && (
-                <ul className="dd-list">
+                <div>
                     {!searchResult ? (
                         <h4>No Results</h4>
                     ) : (
                             searchResult.map(league => {
                                 return (
                                     <Link to={"/leagues/" + league.idLeague} key={league.idLeague}>
-                                        <button className="dd-list-item" key={league.idLeague} id={league.idLeague}>
+                                        <button className="hollow button secondary expanded" key={league.idLeague} id={league.idLeague}>
                                             {league.strLeague}
                                         </button>
                                     </Link>
                                 )
                             })
                         )}
-                </ul>
+                </div>
             )}
         </div>
     );

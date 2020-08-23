@@ -34,11 +34,6 @@ const AllLeagues = () => {
                 setCountryList(res.data.countries))
     }, [])
 
-    const handleOnClick = e => {
-        e.preventDefault();
-        console.log("test")
-    }
-
     return (
         <div>
             <h2>Most Popular</h2>
@@ -48,7 +43,6 @@ const AllLeagues = () => {
                 })
             }
             <br></br>
-            <button onClick={handleOnClick}>Placeholder Console Logging Button</button>
             <h3>Rest of World</h3>
             {
                 countryList.sort().map(country => {

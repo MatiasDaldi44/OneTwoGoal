@@ -18,6 +18,10 @@ const TeamDetails = () => {
             .catch(err => console.log(err))
     }, [])
 
+    setTimeout(() => {
+        console.log(teamPlayers)
+    }, 2000)
+
     return (
         <div>
             {!selectedTeam ? (
@@ -28,6 +32,7 @@ const TeamDetails = () => {
                             return (
                                 <div key={team.strTeam}>
                                     <h1 key={team.strTeam}>{team.strTeam}</h1>
+                                    <img key={team.strTeamBadge} className="card-img" src={team.strTeamBadge} height="300" width="300" alt="No Image Found" />
                                     <p key={team.intFormedYear}>{team.intFormedYear}</p>
                                     <p key={team.strStadium}>{team.strStadium}</p>
                                     <p key={team.strDescriptionEN}>Overview: {team.strDescriptionEN}</p>
