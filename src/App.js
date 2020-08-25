@@ -1,30 +1,31 @@
-import React, { useContext } from 'react';
-import { BrowserRouter as  Route, Switch } from "react-router-dom";
-import { Router } from "@reach/router";
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch, } from "react-router-dom";
 import NavBar from './components/NavBar/';
 import HomePage from './pages/HomePage';
 import AllLeagues from './pages/AllLeagues';
-import SignUp from "./pages/SignUp";
 import UserProfile from './pages/ProfilePage';
-import SignIn from './pages/SignIn';
+import SignUp from './SignUp';
+import LogIn from './LogIn';
 import LeagueDetails from './pages/LeagueDetails';
 import TeamDetails from './pages/TeamDetails';
-import Application from './pages/Application'
-import UserProvider from "./providers/UserProvider";
-import { UserContext } from "./providers/UserProvider";
+import Application from './pages/Application';
+import { AuthProvider } from "./AuthPage";
+import PrivateRoute from "./PrivateRoute";
+import "./App.css";
 
 
-function App() {
+const App = () => {
    
   return (
-    <UserProvider>
+    <AuthProvider>
     
     <Router>
       <div>
         <NavBar />
         <Switch>
-          <Route exact path="/">
-            <HomePage />
+         
+          <Route exact path="/application">
+            <Application />
           </Route>
           <Route exact path="/leagues">
             <AllLeagues />
@@ -33,8 +34,14 @@ function App() {
             <UserProfile />
           </Route>
           <Route exact path="/login">
-            <Application />
-          </Route>
+            <LogIn/>
+            </Route>
+        <Route exact path="/signin">
+          <SignUp/>
+        </Route>
+        
+        <PrivateRoute exact path="/" component={HomePage} />
+
           <Route exact path="/leagues/:id">
             <LeagueDetails />
           </Route>
@@ -44,7 +51,7 @@ function App() {
         </Switch>
       </div>
     </Router>
-    </UserProvider>
+    </AuthProvider>
   );
 }
 export default App;

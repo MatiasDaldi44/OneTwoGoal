@@ -24,7 +24,7 @@ const NavBar = () => {
                     </Link>
                 </li>
                 <li className="pure-menu-item">
-                    <Link to="/login" className={location.pathname === "/login" ? "pure-menu-link" : "pure-menu-link"}>
+                    <Link to="/signin" className={location.pathname === "/signin" ? "pure-menu-link" : "pure-menu-link"}>
                         Log In
                     </Link>
                 </li>
