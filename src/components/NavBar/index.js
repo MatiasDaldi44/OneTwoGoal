@@ -25,36 +25,18 @@ const NavBar = () => {
                 </li>
                 <li className="pure-menu-item">
                     <Link to="/signin" className={location.pathname === "/signin" ? "pure-menu-link" : "pure-menu-link"}>
-                        Log In
+                        Sign Up 
+                    </Link>
+                </li>
+                <li className="pure-menu-item">
+                    <Link to="/signup" className={location.pathname === "/signup" ? "pure-menu-link" : "pure-menu-link"}>
+                        Log In  
                     </Link>
                 </li>
             </ul>
         </div>
 
-        // <div className="pure-menu pure-menu-horizontal">
-        //     <p className="pure-menu-heading pure-menu-link">
-        //         <Link to="/" className={location.pathname === "/" ? "pure-menu-link" : "pure-menu-link"}>
-        //             One-Two Goal
-        //         </Link>
-        //     </p>
-        //     <ul className="pure-menu-list">
-        //         <li className="pure-menu-item">
-        //             <Link to="/leagues" className={location.pathname === "/leagues" ? "pure-menu-link" : "pure-menu-link"}>
-        //                 All Leagues
-        //             </Link>
-        //         </li>
-        //         <li className="pure-menu-item">
-        //             <Link to="/profile" className={location.pathname === "/profile" ? "pure-menu-link" : "pure-menu-link"}>
-        //                 Profile
-        //             </Link>
-        //         </li>
-        //         <li className="pure-menu-item">
-        //             <Link to="/login" className={location.pathname === "/login" ? "pure-menu-link" : "pure-menu-link"}>
-        //                 Log In
-        //             </Link>
-        //         </li>
-        //     </ul>
-        // </div>
+      
     );
 }
 
