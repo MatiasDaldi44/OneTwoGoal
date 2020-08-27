@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import API from "../utils/API"
-import app from "../base";
-
 
 const HomePage = () => {
     const [liveScores, setScores] = useState([])
@@ -14,6 +12,7 @@ const HomePage = () => {
         API.getLiveScores()
             .then(res => setScores(res.data.events))
             .catch(err => console.log(err))
+        organizeLeagues();
         const interval = setInterval(() => {
             API.getLiveScores()
                 .then(res => setScores(res.data.events))
@@ -44,16 +43,16 @@ const HomePage = () => {
             .catch(err => console.log(err))
     }, [])
 
-    setTimeout(() => {
-        console.log(dailyMatches)
-    }, 1000)
+    // setTimeout(() => {
+    //     console.log(MLS)
+    // }, 2000)
 
     return (
         <div>
             {!liveScores ? (
                 <h4>No Matches Currently Playing, Check Out What's Going On Today Down Below</h4>
             ) : (
-                    <div>
+                <div>
                         <h3>Current Matches</h3>
                                 <table className="unstriped">
                                     <thead>
@@ -63,8 +62,8 @@ const HomePage = () => {
                                             <th className="columns small-4">Away</th>
                                         </tr>
                                     </thead>
-                            {liveScores.map(scores => {
-                                return (
+                        {liveScores.map(scores => {
+                            return (
                                     <tbody key={Math.floor((Math.random() * 1000000000000) + 1)}>
                                         <tr>
                                             <td></td>
@@ -119,8 +118,6 @@ const HomePage = () => {
                                             })}
                                         </tbody>
                                     )}
-                                )
-                            })}
                         </table>
                     </div>
                 )}
