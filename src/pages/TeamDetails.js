@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import API from "../utils/API"
+import "../style.css"
 
 const TeamDetails = () => {
     const [selectedTeam, setTeam] = useState([])
@@ -18,10 +19,6 @@ const TeamDetails = () => {
             .catch(err => console.log(err))
     }, [])
 
-    setTimeout(() => {
-        console.log(teamPlayers)
-    }, 2000)
-
     return (
         <div>
             {!selectedTeam ? (
@@ -30,13 +27,25 @@ const TeamDetails = () => {
                     <div>
                         {selectedTeam.map(team => {
                             return (
-                                <div key={team.strTeam}>
-                                    <h1 key={team.strTeam}>{team.strTeam}</h1>
-                                    <img key={team.strTeamBadge} className="card-img" src={team.strTeamBadge} height="300" width="300" alt="No Image Found" />
-                                    <p key={team.intFormedYear}>{team.intFormedYear}</p>
-                                    <p key={team.strStadium}>{team.strStadium}</p>
-                                    <p key={team.strDescriptionEN}>Overview: {team.strDescriptionEN}</p>
+                                <div className="media-object stack-for-small">
+                                    <div className="media-object-section">
+                                        <div className="thumbnail">
+                                            <img key={team.strTeamBadge} className="card-img" src={team.strTeamBadge} height="300" width="300" alt="No Badge Found" />
+                                        </div>
+                                    </div>
+                                    <div className="media-object-section">
+                                        <h3 key={team.strTeam}>{team.strTeam}</h3>
+                                        <h4 key={team.intFormedYear}>{team.intFormedYear}</h4>
+                                        <p key={team.strDescriptionEN}>{team.strDescriptionEN}</p>
+                                    </div>
                                 </div>
+                                // {/* <div className="teamHeader" key={team.strTeam}>
+                                //     <img key={team.strTeamBadge} className="card-img" src={team.strTeamBadge} height="300" width="300" alt="No Badge Found" />
+                                //     <h1 key={team.strTeam}>{team.strTeam}</h1>
+                                //     <p key={team.intFormedYear}>{team.intFormedYear}</p>
+                                //     <p key={team.strStadium}>{team.strStadium}</p>
+                                //     <p key={team.strDescriptionEN}>Overview: {team.strDescriptionEN}</p>
+                                // </div> */}
                             )
                         })}
                     </div>
@@ -50,7 +59,7 @@ const TeamDetails = () => {
                                 return (
                                     <li key={player.idPlayer}>
                                         <h4 key={player.strPlayer}>{player.strPlayer}</h4>
-                                        <img key={player.strThumb} className="card-img" src={player.strThumb} height="200" width="200" alt="No Image Found" />
+                                        <img key={player.strThumb} className="card-img" src={player.strThumb} height="200" width="200" alt="No Headshot Found" />
                                         <p key={player.strPosition}>Role: {player.strPosition}</p>
                                     </li>
                                 )

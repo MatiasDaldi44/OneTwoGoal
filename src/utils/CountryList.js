@@ -1,5 +1,5 @@
 
-const topLeagues = [
+export const topLeagues = [
     {
         id: 1,
         country: "England"
@@ -20,9 +20,9 @@ const topLeagues = [
         id: 5,
         country: "Spain"
     }
-],
+]
 
-const rowLeagues = [
+export const rowLeagues = [
     {
         id: 1,
         country: "Andorra"
@@ -420,3 +420,7 @@ const rowLeagues = [
         country: "Worldwide"
     }
 ]
+
+// export default {
+//     topLeagues, rowLeagues
+// }
