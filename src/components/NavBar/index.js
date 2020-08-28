@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from "react-router-dom";
+import logo from './onetwogoal.jpg'
 
 const NavBar = () => {
 
@@ -9,7 +10,7 @@ const NavBar = () => {
         <div className="top-bar">
             <div className="top-bar-left">
                 <ul className="dropdown menu" data-dropdown-menu>
-                    <img className="nav-img" src="./onetwogoal.jpg" height="25" width="25" alt="Nothing Found" />
+                <img src={logo} alt="onetwogoal" height="25" width="50" /> 
                     <li className="menu-text">One-Two Goal</li>
                     <li>
                         <Link to="/" className={location.pathname === "/" ? "active" : "disactive"}>
