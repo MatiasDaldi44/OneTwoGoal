@@ -32,7 +32,7 @@ const ProfilePage = () => {
 
   return (
     <div className="App">
-      <h1>Upload ProfileImage</h1>
+      <h1>Upload Profile Image</h1>
       <input
         type="file"
         name="file"
