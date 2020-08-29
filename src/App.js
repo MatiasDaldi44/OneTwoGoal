@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, useState } from "react-router-dom";
 import NavBar from './components/NavBar/';
 import HomePage from './pages/HomePage';
 import AllLeagues from './pages/AllLeagues';
@@ -12,6 +12,7 @@ import Redirect from './pages/Redirect';
 import { AuthProvider } from './utils/Auth';
 import PrivateRoute from './pages/PrivateRoute';
 import SignUp from './pages/SignUp';
+
 
 const App = () => {
   return (
@@ -48,5 +49,6 @@ const App = () => {
     </AuthProvider>
   );
 }
+
 
 export default App;
