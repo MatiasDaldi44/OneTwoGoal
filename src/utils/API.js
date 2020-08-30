@@ -33,5 +33,17 @@ export default {
 
     getHeader: function (idLeague) {
         return axios.get("https://www.thesportsdb.com/api/v1/json/4013017/lookupleague.php?id=" + idLeague)
+    },
+
+    getLeagueTable: function (idLeague) {
+        return axios.get("https://www.thesportsdb.com/api/v1/json/4013017/lookuptable.php?l=" + idLeague + "&s=2020-2021")
+    },
+
+    getOldLeagueTable: function (idLeague) {
+        return axios.get("https://www.thesportsdb.com/api/v1/json/4013017/lookuptable.php?l=" + idLeague + "&s=2019-2020")
+    },
+
+    getLeagueGames: function (idLeague) {
+        return axios.get("https://www.thesportsdb.com/api/v1/json/4013017/eventsseason.php?id=" + idLeague + "&s=2020-2021")
     }
 }

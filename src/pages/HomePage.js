@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import API from "../utils/API"
+import Dropdown from '../components/Dropdown'
+import { topLeagues } from '../utils/CountryList'
 
 const HomePage = () => {
     const [liveScores, setScores] = useState([])
@@ -7,6 +9,7 @@ const HomePage = () => {
 
     const [MLS, setMLS] = useState([])
     const [RFPL, setRusski] = useState([])
+    const [PPD, setPara] = useState([])
 
     useEffect(() => {
         API.getLiveScores()
@@ -25,14 +28,12 @@ const HomePage = () => {
         API.getLiveScores()
             .then(res => {
                 let allEvents = res.data.events
-                let AMLS = allEvents.filter(games => {
-                    return games.strLeague === "American Major League Soccer"
-                })
+                let AMLS = allEvents.filter(games => games.strLeague === "American Major League Soccer")
                 setMLS(AMLS)
-                let Russki = allEvents.filter(games => {
-                    return games.strLeague === "Russian Football Premier League"
-                })
+                let Russki = allEvents.filter(games => games.strLeague === "Russian Football Premier League")
                 setRusski(Russki)
+                let ParaPri = allEvents.filter(games => games.strLeague === "Paraguayan Primera Division")
+                setPara(ParaPri)
             }
         )
     }
@@ -44,16 +45,22 @@ const HomePage = () => {
     }, [])
 
     // setTimeout(() => {
-    //     console.log(MLS)
-    // }, 2000)
+    //     console.log(allEvents)
+    // }, 1000)
 
     return (
         <div>
+            {
+                topLeagues.map(res => {
+                    return <Dropdown key={res.id} name={res.country}/>
+                })
+            }
             {!liveScores ? (
                 <h4>No Matches Currently Playing, Check Out What's Going On Today Down Below</h4>
             ) : (
                 <div>
                         <h3>Current Matches</h3>
+                        <p></p>
                                 <table className="unstriped">
                                     <thead>
                                         <tr>
@@ -78,9 +85,7 @@ const HomePage = () => {
                                     </tbody>
                             )
                         })}
-                                    {!MLS ? (
-                                        <div></div>
-                                     ) : (
+                                    {MLS.length >= 1 ? (
                                         <tbody key={Math.floor((Math.random() * 1000000000000) + 1)}>
                                                 <tr>
                                                     <td></td>
@@ -97,10 +102,10 @@ const HomePage = () => {
                                                 )
                                             })}
                                         </tbody>
-                                    )}
-                                    {!RFPL ? (
+                                        ) : (
                                         null
-                                     ) : (
+                                    )}
+                                    {RFPL.length >= 1 ? (
                                         <tbody key={Math.floor((Math.random() * 1000000000000) + 1)}>
                                             <tr>
                                                 <td></td>
@@ -117,6 +122,28 @@ const HomePage = () => {
                                                 )
                                             })}
                                         </tbody>
+                                        ) : (
+                                        null
+                                    )}
+                                    {PPD.length >= 1 ? (
+                                        <tbody key={Math.floor((Math.random() * 1000000000000) + 1)}>
+                                            <tr>
+                                                <td></td>
+                                                <td>Paraguayan Primera Division</td>
+                                                <td></td>
+                                            </tr>
+                                            {PPD.map(res => {
+                                                return (
+                                                <tr key={Math.floor((Math.random() * 1000000000000) + 1)}>
+                                                    <td>{res.strHomeTeam}</td>
+                                                    <td>{res.strProgress}' ({res.intHomeScore} - {res.intAwayScore})</td>
+                                                    <td>{res.strAwayTeam}</td>
+                                                </tr>
+                                                )
+                                            })}
+                                        </tbody>
+                                        ) : (
+                                        null
                                     )}
                         </table>
                     </div>
