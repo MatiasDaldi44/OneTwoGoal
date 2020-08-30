@@ -1,17 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, Link, Route } from "react-router-dom";
 import API from "../utils/API"
 import "../style.css"
+import Players from './Players';
+import PlayerList from '../components/PlayerList.js';
 
 const TeamDetails = () => {
     const [selectedTeam, setTeam] = useState([])
     const [teamPlayers, setPlayers] = useState([])
+    const [leagueId, setLeagueId] = useState([])
 
     const { id } = useParams();
 
     useEffect(() => {
         API.getTeamById(id)
-            .then(res => setTeam(res.data.teams))
+            .then(res => {
+                setTeam(res.data.teams)
+                setLeagueId(res.data.teams[0].idLeague)
+            })
             .catch(err => console.log(err))
 
         API.getPlayersByTeamId(id)
@@ -39,18 +45,16 @@ const TeamDetails = () => {
                                         <p key={team.strDescriptionEN}>{team.strDescriptionEN}</p>
                                     </div>
                                 </div>
-                                // {/* <div className="teamHeader" key={team.strTeam}>
-                                //     <img key={team.strTeamBadge} className="card-img" src={team.strTeamBadge} height="300" width="300" alt="No Badge Found" />
-                                //     <h1 key={team.strTeam}>{team.strTeam}</h1>
-                                //     <p key={team.intFormedYear}>{team.intFormedYear}</p>
-                                //     <p key={team.strStadium}>{team.strStadium}</p>
-                                //     <p key={team.strDescriptionEN}>Overview: {team.strDescriptionEN}</p>
-                                // </div> */}
                             )
                         })}
                     </div>
-                )}
-            {!teamPlayers ? (
+                )
+            }
+            <Link to={`/leagues/${leagueId}/${id}/players`} role="button" className="button">
+                Player List
+            </Link>
+            <Route exact path={`/leagues/${leagueId}/${id}/players`} component={PlayerList} />
+            {/* {!teamPlayers ? (
                 <h4>No Players in Database</h4>
             ) : (
                     <div>
@@ -66,7 +70,7 @@ const TeamDetails = () => {
                             })}
                         </ul>
                     </div>
-                )}
+                )} */}
         </div>
     );
 }

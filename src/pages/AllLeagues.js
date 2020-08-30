@@ -1,6 +1,5 @@
 import React from 'react';
-import TopLeagueDropdown from "../components/TopLeagueDropdown"
-import RowDropdown from '../components/RowDropdown';
+import Dropdown from "../components/Dropdown"
 import { topLeagues, rowLeagues } from '../utils/CountryList'
 
 const AllLeagues = () => {
@@ -9,15 +8,15 @@ const AllLeagues = () => {
             <h2>Most Popular</h2>
             {
                 topLeagues.map(res => {
-                    return <TopLeagueDropdown key={res.id} name={res.country} />
+                    return <Dropdown key={res.id} name={res.country} />
                 })
             }
             <br></br>
             <h3>Rest of World</h3>
             {
-                rowLeagues.map(country => {
+                rowLeagues.map(res => {
                     return (
-                        <RowDropdown key={country.id} name={country.country} />
+                        <Dropdown key={res.id} name={res.country} />
                     )
                 })
             }
