@@ -5,10 +5,10 @@ import logo from './onetwogoal.jpg'
 import '../App.css'
 
 const ProfilePage = () => {
-    const { currentUser } = useContext(AuthContext)
-    const [image, setImage] = useState('')
-  
-    const uploadImage = async e => {
+  const { currentUser } = useContext(AuthContext)
+  const [image, setImage] = useState('')
+
+  const uploadImage = async e => {
     const files = e.target.files
     const data = new FormData()
     data.append('file', files[0])
@@ -28,7 +28,7 @@ const ProfilePage = () => {
   }
 
   const [loading, setLoading] = useState(false)
-    console.log(currentUser.email)
+  console.log(currentUser.email)
 
   return (
     <div className="App">
@@ -42,24 +42,24 @@ const ProfilePage = () => {
       {loading ? (
         <h3>Loading...</h3>
       ) : (
-        <img src={image} style={{ width: '300px' }} />
-      )} 
+          <img src={image} style={{ width: '300px' }} alt="" />
+        )}
       <center><div>
-          <img src={logo} alt="onetwogoal" height="200" width="200" />
-            <h1>Welcome to One-Two Goal</h1>
-            <h2> {currentUser.email} </h2>
-            <button onClick={() => app.auth().signOut()}>Sign Out</button>
-        </div></center>
+        <img src={logo} alt="onetwogoal" height="200" width="200" />
+        <h1>Welcome to One-Two Goal</h1>
+        <h2> {currentUser.email} </h2>
+        <button onClick={() => app.auth().signOut()}>Sign Out</button>
+      </div></center>
     </div>
   )
 }
-    
-       
-    
 
 
 
-  
+
+
+
+
 
 
 

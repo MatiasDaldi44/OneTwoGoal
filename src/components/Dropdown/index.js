@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 import API from "../../utils/API"
 import { Link } from "react-router-dom";
 import "./styles.css"
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import { grey } from '@material-ui/core/colors';
 
-const TopLeagueDropdown = ({ name: country }) => {
+const Dropdown = ({ name: country }) => {
     const [open, setOpen] = useState(false);
     const [searchResult, setSearch] = useState([])
     const toggle = () => setOpen(!open);
@@ -16,16 +19,38 @@ const TopLeagueDropdown = ({ name: country }) => {
             .catch(err => console.log(err));
     }, [])
 
+    const ColorButton = withStyles((theme) => ({
+        root: {
+            color: theme.palette.getContrastText(grey[500]),
+            backgroundColor: grey[500],
+            '&:hover': {
+                backgroundColor: grey[700],
+            },
+        },
+    }))(Button);
+
+    const useStyles = makeStyles((theme) => ({
+        margin: {
+            margin: theme.spacing(1),
+        },
+    }));
+
+    const classes = useStyles();
+
     return (
         <div>
-            <button
-                className="dropdown button secondary expanded"
+            <ColorButton
+                fullWidth
+                size="large"
+                variant="contained"
+                color="primary"
+                className={classes.margin}
                 onClick={() => toggle(!open)}
             >
                 {country}
                 {/* {open ? 'Close' : 'Open'} */}
                 {/* <p>{open ? 'Close' : 'Open'}</p> */}
-            </button>
+            </ColorButton>
 
             {open && (
                 <div>
@@ -39,9 +64,16 @@ const TopLeagueDropdown = ({ name: country }) => {
                                         key={league.idLeague}
                                         leaguename={league.strLeague}
                                     >
-                                        <button className="hollow button secondary expanded" key={league.idLeague} id={league.idLeague}>
+                                        <Button
+                                            fullWidth
+                                            size="large"
+                                            variant="outlined"
+                                            key={league.idLeague}
+                                            id={league.idLeague}
+                                        >
                                             {league.strLeague}
-                                        </button>
+                                        </Button>
+                                        <br></br>
                                     </Link>
                                 )
                             })
@@ -52,4 +84,4 @@ const TopLeagueDropdown = ({ name: country }) => {
     );
 }
 
-export default TopLeagueDropdown;
+export default Dropdown;
