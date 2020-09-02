@@ -10,7 +10,7 @@ const NavBar = () => {
         <div className="top-bar">
             <div className="top-bar-left">
                 <ul className="dropdown menu" data-dropdown-menu>
-                <img src={logo} alt="onetwogoal" height="25" width="50" /> 
+                    <img src={logo} alt="onetwogoal" height="25" width="50" />
                     <li className="menu-text">One-Two Goal</li>
                     <li>
                         <Link to="/" className={location.pathname === "/" ? "active" : "disactive"}>

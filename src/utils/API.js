@@ -45,5 +45,9 @@ export default {
 
     getLeagueGames: function (idLeague) {
         return axios.get("https://www.thesportsdb.com/api/v1/json/4013017/eventsseason.php?id=" + idLeague + "&s=2020-2021")
+    },
+
+    getScheduleByTeam: function (teamdId) {
+        return axios.get("https://www.thesportsdb.com/api/v1/json/4013017/eventsnext.php?id=" + teamdId)
     }
 }
