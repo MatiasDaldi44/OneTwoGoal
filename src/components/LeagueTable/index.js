@@ -57,14 +57,14 @@ const LeagueTable = () => {
                 <Table className={classes.table} aria-label="customized table">
                     <TableHead>
                         <TableRow>
-                            <StyledTableCell width="200" align="center">#</StyledTableCell>
-                            <StyledTableCell width="200" align="center">Team</StyledTableCell>
-                            <StyledTableCell width="200" align="center">P</StyledTableCell>
-                            <StyledTableCell width="200" align="center">W</StyledTableCell>
-                            <StyledTableCell width="200" align="center">D</StyledTableCell>
-                            <StyledTableCell width="200" align="center">L</StyledTableCell>
-                            <StyledTableCell width="200" align="center">Goals</StyledTableCell>
-                            <StyledTableCell width="200" align="center">PTS</StyledTableCell>
+                            <StyledTableCell align="center">#</StyledTableCell>
+                            <StyledTableCell align="center">Team</StyledTableCell>
+                            <StyledTableCell align="center">P</StyledTableCell>
+                            <StyledTableCell align="center">W</StyledTableCell>
+                            <StyledTableCell align="center">D</StyledTableCell>
+                            <StyledTableCell align="center">L</StyledTableCell>
+                            <StyledTableCell align="center">Goals</StyledTableCell>
+                            <StyledTableCell align="center">PTS</StyledTableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

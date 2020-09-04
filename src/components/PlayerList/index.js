@@ -6,6 +6,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
+import Container from '@material-ui/core/Container'
 
 const PlayerList = () => {
     const [teamPlayers, setPlayers] = useState([])
@@ -21,7 +22,6 @@ const PlayerList = () => {
     const useStyles = makeStyles((theme) => ({
         root: {
             width: '100%',
-            maxWidth: 360,
             backgroundColor: theme.palette.background.paper,
         },
     }));
@@ -33,14 +33,14 @@ const PlayerList = () => {
             {!teamPlayers ? (
                 <h4>No Players in Database</h4>
             ) : (
-                    <div>
-                        <ul>
+                    <Container maxWidth="lg">
+                        <List component="nav" className={classes.root}>
                             {teamPlayers.map(player => {
                                 return (
-                                    <List fullWidth component="nav" className={classes.root} aria-label="mailbox folders">
-                                        <ListItem alignItems="center">
+                                    <>
+                                        <Divider />
+                                        <ListItem key={player.strPlayer}>
                                             <ListItemText>
-                                                <h4 key={player.strPlayer}>{player.strPlayer}</h4>
                                                 <img
                                                     key={player.strThumb}
                                                     className="card-img"
@@ -49,15 +49,20 @@ const PlayerList = () => {
                                                     width="200"
                                                     alt="No Headshot Found"
                                                 />
-                                                <p key={player.strPosition}>Role: {player.strPosition}</p>
+                                            </ListItemText>
+                                            <ListItemText>
+                                                <h4>{player.strPlayer}</h4>
+                                            </ListItemText>
+                                            <ListItemText>
+                                                <p>Role: {player.strPosition}</p>
                                             </ListItemText>
                                         </ListItem>
                                         <Divider />
-                                    </List>
+                                    </>
                                 )
                             })}
-                        </ul>
-                    </div>
+                        </List>
+                    </Container>
                 )}
         </div>
     );
