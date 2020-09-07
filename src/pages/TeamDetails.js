@@ -8,7 +8,6 @@ import { Tabs, Tab } from '@material-ui/core'
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 
-
 const TeamDetails = () => {
     const [selectedTeam, setTeam] = useState([])
     const [selectedTab, setSelectedTab] = React.useState(0);

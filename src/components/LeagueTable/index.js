@@ -45,7 +45,7 @@ const LeagueTable = () => {
 
     const useStyles = makeStyles({
         table: {
-            minWidth: 700,
+            minWidth: 300,
         },
     });
 
@@ -63,7 +63,6 @@ const LeagueTable = () => {
                             <StyledTableCell align="center">W</StyledTableCell>
                             <StyledTableCell align="center">D</StyledTableCell>
                             <StyledTableCell align="center">L</StyledTableCell>
-                            <StyledTableCell align="center">Goals</StyledTableCell>
                             <StyledTableCell align="center">PTS</StyledTableCell>
                         </TableRow>
                     </TableHead>
@@ -82,7 +81,6 @@ const LeagueTable = () => {
                                         <StyledTableCell align="center">{res.win}</StyledTableCell>
                                         <StyledTableCell align="center">{res.draw}</StyledTableCell>
                                         <StyledTableCell align="center">{res.loss}</StyledTableCell>
-                                        <StyledTableCell align="center">{res.goalsfor} : {res.goalsagainst}</StyledTableCell>
                                         <StyledTableCell align="center">{res.total}</StyledTableCell>
                                     </StyledTableRow>
                                 )
@@ -90,7 +88,7 @@ const LeagueTable = () => {
                             oldTable.map(res => {
                                 return (
                                     <StyledTableRow key={Math.floor((Math.random() * 1000000000000) + 1)}>
-                                        <StyledTableCell align="center">{leagueTable.indexOf(res) + 1}</StyledTableCell>
+                                        <StyledTableCell align="center">{oldTable.indexOf(res) + 1}</StyledTableCell>
                                         <StyledTableCell align="center">
                                             <Link to={`/leagues/${id}/` + res.teamid} key={res.teamid}>
                                                 {res.name}
@@ -100,7 +98,6 @@ const LeagueTable = () => {
                                         <StyledTableCell align="center">{res.win}</StyledTableCell>
                                         <StyledTableCell align="center">{res.draw}</StyledTableCell>
                                         <StyledTableCell align="center">{res.loss}</StyledTableCell>
-                                        <StyledTableCell align="center">{res.goalsfor} : {res.goalsagainst}</StyledTableCell>
                                         <StyledTableCell align="center">{res.total}</StyledTableCell>
                                     </StyledTableRow>
                                 )

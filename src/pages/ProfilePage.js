@@ -33,6 +33,7 @@ const ProfilePage = () => {
     const file = await res.json()
 
     setImage(file.secure_url)
+    console.log(file.secure_url)
     setLoading(false)
   }
 
