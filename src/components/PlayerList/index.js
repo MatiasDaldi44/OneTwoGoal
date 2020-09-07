@@ -7,6 +7,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import Container from '@material-ui/core/Container'
+import noPic from '../../pages/user-xxl.png'
 
 const PlayerList = () => {
     const [teamPlayers, setPlayers] = useState([])
@@ -41,14 +42,25 @@ const PlayerList = () => {
                                         <Divider />
                                         <ListItem key={player.strPlayer}>
                                             <ListItemText>
-                                                <img
-                                                    key={player.strThumb}
-                                                    className="card-img"
-                                                    src={player.strThumb}
-                                                    height="200"
-                                                    width="200"
-                                                    alt="No Headshot Found"
-                                                />
+                                                {player.strThumb ? (
+                                                    <img
+                                                        key={player.strThumb}
+                                                        className="card-img"
+                                                        src={player.strThumb}
+                                                        height="200"
+                                                        width="200"
+                                                        alt=" "
+                                                    />
+                                                ) : (
+                                                        <img
+                                                            key={player.strThumb}
+                                                            className="card-img"
+                                                            src={noPic}
+                                                            height="200"
+                                                            width="200"
+                                                            alt=" "
+                                                        />
+                                                    )}
                                             </ListItemText>
                                             <ListItemText>
                                                 <h4>{player.strPlayer}</h4>
