@@ -18,26 +18,26 @@ const ProfilePage = () => {
   const [image, setImage] = useState('')
 
   const uploadImage = async e => {
-    const files = e.target.files
-    const data = new FormData()
-    data.append('file', files[0])
-    data.append('upload_preset', 'crscode')
-    setLoading(true)
-    const res = await fetch(
-      '	https://api.cloudinary.com/v1_1/crscode/image/upload',
-      {
-        method: 'POST',
-        body: data
-      }
-    )
-    const file = await res.json()
-
-    setImage(file.secure_url)
-    console.log(file.secure_url)
-    setLoading(false)
+    const files = e.target.files[0]
+    app.storage().ref('users/' + currentUser.uid + '/profile.jpg').put(files)
+      .then(() => {
+        app.storage().ref('users/' + currentUser.uid + '/profile.jpg').getDownloadURL().then(imgUrl => {
+          setImage(imgUrl);
+        })
+      })
   }
 
-  const [loading, setLoading] = useState(false)
+  if (currentUser) {
+    app.storage().ref('users/' + currentUser.uid + '/profile.jpg').getDownloadURL().then(imgUrl => {
+      setImage(imgUrl);
+    })
+  }
+
+  setTimeout(() => {
+    app.storage().ref('users/' + currentUser.uid + '/profile.jpg').getDownloadURL().then(imgUrl => {
+      console.log(imgUrl);
+    })
+  }, 3000)
 
   const useStyles = makeStyles({
     root: {
@@ -74,9 +74,6 @@ const ProfilePage = () => {
               <Typography gutterBottom variant="h5" component="h2">
                 {currentUser.email}
               </Typography>
-              {/* <Typography variant="body2" color="textSecondary" component="p">
-                    Placeholder
-                  </Typography> */}
             </CardContent>
             <CardActions>
               <input
