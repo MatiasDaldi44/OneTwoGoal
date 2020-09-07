@@ -33,12 +33,6 @@ const ProfilePage = () => {
     })
   }
 
-  setTimeout(() => {
-    app.storage().ref('users/' + currentUser.uid + '/profile.jpg').getDownloadURL().then(imgUrl => {
-      console.log(imgUrl);
-    })
-  }, 3000)
-
   const useStyles = makeStyles({
     root: {
       maxWidth: 345
