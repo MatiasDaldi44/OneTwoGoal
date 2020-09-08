@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import API from '../../utils/API'
-import logo from './onetwogoal.jpg'
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -71,7 +70,6 @@ const CurrentMatches = () => {
         <>
             {!liveScores ? (
                 <>
-                    <img src={logo} alt="onetwogoal" height="25" width="50" />
                     <h3>Current Matches</h3>
                     <br></br>
                     <h4>No Matches Currently Playing, Check Out What's Going On Today Down Below</h4>
