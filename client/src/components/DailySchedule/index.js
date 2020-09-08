@@ -79,7 +79,7 @@ const DailySchedule = () => {
                                         <StyledTableCell width="150" align="center">Home</StyledTableCell>
                                         <StyledTableCell width="150" align="center">League</StyledTableCell>
                                         <StyledTableCell width="150" align="center">Away</StyledTableCell>
-                                        <StyledTableCell width="150" align="center">Local Kick Off Time</StyledTableCell>
+                                        <StyledTableCell width="150" align="center">Kick Off Time (GMT+1)</StyledTableCell>
                                     </TableRow>
                                 </TableHead>
                                 {sortedDailySchedule.map(matches => (
